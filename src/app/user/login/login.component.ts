@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { of, Subscription } from "rxjs";
-import { catchError, filter } from "rxjs/operators";
+import { catchError, filter, take } from "rxjs/operators";
 import { User } from "../models/user";
 import { UserService } from "../user.service";
 
@@ -11,11 +11,10 @@ import { UserService } from "../user.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public errorMessage: string;
   public currentUser: User;
-  public subscription: Subscription;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -33,9 +32,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public async onSubmit() {
-    this.subscription = this.userService
+    this.userService
       .login(this.loginForm.value)
       .pipe(
+        take(1),
         catchError((val) => {
           this.errorMessage = `Error: ${val.message}`;
           return of(null);
@@ -47,9 +47,5 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate([""]);
         }
       });
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
