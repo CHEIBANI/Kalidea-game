@@ -1,1 +1,9 @@
-<p>home works!</p>
+<h1> Home </h1>
+
+<div appIfUser>
+    <a class="btn btn-primary" [routerLink]="['/game','new']">New game</a>
+</div>
+
+<div appIfNotUser>
+    <a class="btn btn-primary" [routerLink]="['/user','login']">Login</a>
+</div>
