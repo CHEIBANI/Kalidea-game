@@ -1,1 +1,13 @@
-<p>login works!</p>
+<h1> Login </h1>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <app-form-field [formGroup]="loginForm" [controlName]="'email'" [inputTitle]="'Password'" [inputType]="'email'"
+        [inputId]="'login_email'" [isRequired]="true"></app-form-field>
+    <app-form-field [formGroup]="loginForm" [controlName]="'password'" [inputTitle]="'Password'"
+        [inputType]="'password'" [inputId]="'login_password'" [isRequired]="true"></app-form-field>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid"> Login </button>
+</form>

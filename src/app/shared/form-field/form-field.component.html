@@ -1,1 +1,29 @@
-<p>form-field works!</p>
+<div class="form-group" [formGroup]="formGroup">
+    <label [attr.for]="inputId">
+        {{ inputTitle }}
+    </label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <span class="fa" [ngClass]="{
+                    'fa-at': inputType === 'email',
+                    'fa-lock': inputType === 'password'
+                }"></span>
+            </span>
+        </div>
+        <input [formControlName]="controlName" [id]="inputId" [title]="inputTitle" [type]="inputType"
+            [attr.required]="isRequired" class="rounded-right form-control" />
+        <div class="invalid-feedback" [style.display]="formGroup && formGroup.invalid ? 'block': 'none'"
+            *ngIf="formGroup && formGroup.invalid && formGroup.controls[controlName].errors ">
+            <ul>
+                <li *ngIf="formGroup.controls[controlName].errors?.minlength">
+                    minlength : "requiredLength": {{ formGroup.controls[controlName].errors.minlength.requiredLength }},
+                    "actualLength": {{ formGroup.controls.email.errors.minlength.actualLength }}
+                </li>
+                <li *ngIf="!formGroup.value[controlName] && formGroup.touched">
+                    {{ controlName }}: true
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
