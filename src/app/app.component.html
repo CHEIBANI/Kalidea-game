@@ -4,15 +4,18 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <span class="navbar-text">
-      %username%
+      {{(currentUser | async)?.username}}
     </span>
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="user/logout">Logout</a>
+      <li class="nav-item" *ngIf="currentUser | async; else login">
+        <a class="nav-link" routerLink="user/logout">Logout</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="user/login">Login</a>
-      </li>
+
+      <ng-template #login>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="user/login">Login</a>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>

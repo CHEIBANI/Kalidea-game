@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { User } from "./user/models/user";
+import { UserService } from "./user/user.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = 'Kalidea-game';
+  public currentUser = this.userService.user$;
+
+  constructor(private userService: UserService) {}
 }
