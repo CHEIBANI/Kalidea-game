@@ -11,15 +11,20 @@ import { UserService } from "../user.service";
 })
 export class LogoutComponent implements OnInit {
   public subscription: Subscription;
+  public loading: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {}
 
   public logout() {
+    this.loading = true;
     this.userService
       .logout()
       .pipe(take(1))
-      .subscribe(() => this.router.navigate([""]));
+      .subscribe(() => {
+        this.loading = false;
+        this.router.navigate([""]);
+      });
   }
 }

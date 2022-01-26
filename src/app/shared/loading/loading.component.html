@@ -1,1 +1,8 @@
-<p>loading works!</p>
+<ng-container *ngIf="loading">
+    Loading
+    <div class="spinner-border" role="status"></div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+    <ng-content></ng-content>
+</ng-container>
