@@ -12,8 +12,10 @@
                 }"></span>
             </span>
         </div>
-        <input [formControlName]="controlName" [id]="inputId" [title]="inputTitle" [type]="inputType"
-            [attr.required]="isRequired" class="rounded-right form-control" />
+        <input [formControlName]="controlName" [id]="inputId" [title]="inputTitle" [type]="inputType" [ngClass]="{
+            'is-valid': formGroup.get(controlName).valid,
+            'is-invalid': !formGroup.get(controlName).valid}" [attr.required]="isRequired"
+            class="rounded-right form-control" />
         <div class="invalid-feedback" [style.display]="formGroup && formGroup.invalid ? 'block': 'none'"
             *ngIf="formGroup && formGroup.invalid && formGroup.controls[controlName].errors ">
             <ul>

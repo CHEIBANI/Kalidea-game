@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-case',
-  templateUrl: './case.component.html',
-  styleUrls: ['./case.component.scss']
+  selector: "app-case",
+  templateUrl: "./case.component.html",
+  styleUrls: ["./case.component.scss"],
 })
-export class CaseComponent implements OnInit {
+export class CaseComponent {
+  @Input()
+  @HostBinding("style.background")
+  public color: string = "";
 
-  constructor() { }
+  @HostBinding("className") componentClass: string;
 
-  ngOnInit(): void {
+  constructor() {
+    this.componentClass = "card";
   }
 
+  @HostListener("click")
+  onClick() {
+    this.color = prompt("insert color");
+  }
 }

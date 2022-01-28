@@ -12,3 +12,13 @@
         </div>
     </div>
 </form>
+
+<table class="table">
+    <tbody>
+        <tr *ngFor="let row of table; index as i">
+            <td *ngFor="let col of table[i]; index as j">
+                <app-case [(color)]="table[i][j]"></app-case>
+            </td>
+        </tr>
+    </tbody>
+</table>
