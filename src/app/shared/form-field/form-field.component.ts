@@ -6,7 +6,7 @@ import { FormGroup } from "@angular/forms";
   templateUrl: "./form-field.component.html",
   styleUrls: ["./form-field.component.scss"],
 })
-export class FormFieldComponent implements OnInit {
+export class FormFieldComponent {
   @Input()
   public formGroup: FormGroup;
 
@@ -26,6 +26,4 @@ export class FormFieldComponent implements OnInit {
   public isRequired: boolean;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

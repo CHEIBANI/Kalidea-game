@@ -7,7 +7,8 @@
             <span class="input-group-text">
                 <span class="fa" [ngClass]="{
                     'fa-at': inputType === 'email',
-                    'fa-lock': inputType === 'password'
+                    'fa-lock': inputType === 'password',
+                    'fa-sort-numeric-asc': controlName === 'rows' || controlName === 'cols'
                 }"></span>
             </span>
         </div>
@@ -22,6 +23,10 @@
                 </li>
                 <li *ngIf="!formGroup.value[controlName] && formGroup.touched">
                     {{ controlName }}: true
+                </li>
+                <li *ngIf="formGroup.controls[controlName].errors?.min">
+                    min : "min": {{ formGroup.controls[controlName].errors?.min?.min }},
+                    "actual": {{ formGroup.controls[controlName].errors?.min?.actual }}
                 </li>
             </ul>
         </div>

@@ -12,10 +12,6 @@ const gameRoutes: Routes = [
         path: "new",
         component: NewComponent,
       },
-      {
-        path: "case",
-        component: CaseComponent,
-      },
     ],
   },
 ];
