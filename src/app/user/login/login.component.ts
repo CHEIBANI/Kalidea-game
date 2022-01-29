@@ -15,12 +15,13 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public errorMessage: string;
   public currentUser: User;
+  public loading: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
   public ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl("john@doe", [
+      email: new FormControl("Sincere@april.biz", [
         Validators.required,
         Validators.minLength(6),
       ]),
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   public async onSubmit() {
+    this.loading = true;
     this.userService
       .login(this.loginForm.value)
       .pipe(
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe((user: User) => {
         if (user) {
+          this.loading = false;
           this.router.navigate([""]);
         }
       });
