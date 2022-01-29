@@ -6,16 +6,20 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IfUserDirective } from "./if-user.directive";
 import { IfNotUserDirective } from "./if-not-user.directive";
 
-const COMPONENTS = [
-  FormFieldComponent,
-  LoadingComponent,
-  IfUserDirective,
-  IfNotUserDirective,
-];
-
 @NgModule({
-  declarations: COMPONENTS,
+  declarations: [
+    FormFieldComponent,
+    LoadingComponent,
+    IfUserDirective,
+    IfNotUserDirective,
+  ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: COMPONENTS,
+  exports: [
+    FormFieldComponent,
+    LoadingComponent,
+    IfUserDirective,
+    IfNotUserDirective,
+    CommonModule,
+  ],
 })
 export class SharedModule {}
