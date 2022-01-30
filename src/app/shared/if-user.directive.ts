@@ -12,7 +12,6 @@ export class IfUserDirective {
     protected userService: UserService
   ) {
     this.userService.user$.subscribe((user) => {
-      console.log("heyyyyyyy");
       this.update(user);
     });
   }

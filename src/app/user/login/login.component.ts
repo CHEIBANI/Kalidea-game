@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         take(1),
         catchError((val) => {
           this.errorMessage = `Error: ${val.message}`;
+          this.loading = false;
           return of(null);
         }),
         filter((user) => user !== null)
