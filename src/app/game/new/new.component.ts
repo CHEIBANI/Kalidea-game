@@ -41,8 +41,8 @@ export class NewComponent implements OnInit {
     }
   }
 
-  public updateGrid(rows: number, cols: number) {
-    let diff;
+  public updateGrid(rows: number, cols: number): void {
+    let diff: number;
     if (this.table.length > rows) {
       this.table.length = rows;
     } else if (this.table.length < rows) {
@@ -53,13 +53,15 @@ export class NewComponent implements OnInit {
     }
 
     if (this.table[0].length > cols) {
-      diff = this.table.length;
-      for (let i = 0; i < diff; i++) {
-        this.table[i].length = cols;
+      diff = this.table[0].length - cols;
+      for (let i = 0; i < this.table.length; i++) {
+        for (let j = 0; j < diff; j++) {
+          this.table[i].pop();
+        }
       }
     } else if (this.table[0].length < cols) {
+      diff = cols - this.table[0].length;
       for (let i = 0; i < this.table.length; i++) {
-        diff = cols - this.table.length + 2;
         for (let j = 0; j < diff; j++) {
           this.table[i].push("");
         }
