@@ -44,10 +44,7 @@ export class UserService {
         .get(`https://jsonplaceholder.typicode.com/users?email=${email}`)
         .subscribe((data: unknown[]) => {
           if (data && data.length > 0 && password === "abcde") {
-            user = {
-              id: "5fc62fdb5eb04def08ac913a",
-              username: "JohnDoe",
-            };
+            user = data[0];
             this.userSubject.next(user);
           } else {
             subscriber.error(new Error("invalid credential"));
